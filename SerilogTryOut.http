@@ -1,6 +1,0 @@
-@SerilogTryOut_HostAddress = http://localhost:5188
-
-GET {{SerilogTryOut_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

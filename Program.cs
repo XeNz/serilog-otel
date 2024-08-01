@@ -1,27 +1,12 @@
 using System.Diagnostics;
 using Destructurama;
 using Destructurama.Attributed;
-using OpenTelemetry.Logs;
-using OpenTelemetry.Metrics;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
 using Serilog;
 using SerilogTryOut;
 
 try
 {
     Log.Information("Starting web application");
-    var loggerConfiguration = new LoggerConfiguration();
-
-    loggerConfiguration.Destructure.UsingAttributes()
-        .WriteTo.OpenTelemetry();
-    var isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")!
-        .Equals("DEVELOPMENT", StringComparison.OrdinalIgnoreCase);
-
-    loggerConfiguration.WriteTo
-        .Conditional(_ => isDevelopment, wt => wt.Console());
-
-    Log.Logger = loggerConfiguration.CreateLogger();
 
     var builder = WebApplication.CreateBuilder(args);
     builder.WebHost.CaptureStartupErrors(true);
